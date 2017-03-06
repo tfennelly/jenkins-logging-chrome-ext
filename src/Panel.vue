@@ -1,16 +1,19 @@
 <template>
-  <div id="app">
-    <hello></hello>
-  </div>
+    <div id="Panel">
+        Number of log categories {{logCategories.length}}
+    </div>
 </template>
 
 <script>
-import Hello from './components/Hello.vue'
+    import LogCategories from './components/LogCategories.vue'
 
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
+    export default {
+        name: 'Panel',
+        components: {
+            LogCategories
+        },
+        data: {
+            logCategories: logCategories
+        }
+    }
 </script>
