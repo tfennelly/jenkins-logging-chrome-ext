@@ -1,6 +1,6 @@
 <template>
     <div id="logCategories">
-        Number of logging categories = {{numCategories}}
+        Number of logging categories: <span class="new badge red">{{numCategories}}</span>
     </div>
 </template>
 
