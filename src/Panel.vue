@@ -1,19 +1,16 @@
 <template>
-    <div id="Panel">
-        Number of log categories {{logCategories.length}}
-    </div>
+  <div id="Panel">
+    <LogCategories></LogCategories>
+  </div>
 </template>
 
 <script>
-    import LogCategories from './components/LogCategories.vue'
+import LogCategories from './components/LogCategories.vue'
 
-    export default {
-        name: 'Panel',
-        components: {
-            LogCategories
-        },
-        data: {
-            logCategories: logCategories
-        }
-    }
+export default {
+  name: 'Panel',
+  components: {
+      LogCategories
+  }
+}
 </script>
