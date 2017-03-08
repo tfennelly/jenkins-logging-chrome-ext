@@ -43,6 +43,10 @@ gulp.task('default', (callback) => {
         callback);
 });
 
+// Create copy tasks ...
+copy('ext-src/**', 'dist');
+copy('node_modules/bootstrap/dist/**', 'dist/bootstrap');
+
 // Bundle main extension scripts
 bundle('background.js');
 bundle('devtools.js');
@@ -51,8 +55,3 @@ bundle('panel.js');
 // Bundle content scripts
 bundle('content-scripts/log-categories-count.js');
 bundle('content-scripts/log-categories.js');
-
-// Create copy tasks ...
-copy('ext-src/**', 'dist');
-copy('node_modules/materialize-css/dist/css/**', 'dist/styles');
-copy('node_modules/materialize-css/dist/fonts/roboto/**', 'dist/fonts/roboto');

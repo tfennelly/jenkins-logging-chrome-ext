@@ -1,15 +1,30 @@
 <template>
-    <div id="logCategories">
-        Number of logging categories: <span class="new badge red">{{numCategories}}</span>
-    </div>
+    <b-table
+        :items="logCategories"
+        :fields="fields"
+        pagination
+        :perPage="10"
+    >
+        <template slot="category" scope="item">{{item.value}}</template>
+        <template slot="logLevel" scope="item">{{item.value}}</template>
+    </b-table>
 </template>
 
 <script>
+    import LogCategory from './LogCategory.vue'
+
     export default {
         name: 'logCategories',
+        components: {
+            LogCategory
+        },
         data () {
             const messaging = require('../messaging');
             const data = {
+                fields: {
+                    category: {label: 'Category', sortable: true},
+                    logLevel: {label: 'Log Level'}
+                },
                 logCategories: [],
                 numCategories: 0
             };

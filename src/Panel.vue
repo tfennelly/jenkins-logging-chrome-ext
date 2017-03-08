@@ -1,16 +1,16 @@
 <template>
-  <div id="Panel">
-    <LogCategories></LogCategories>
-  </div>
+    <div id="Panel">
+        <LogCategories></LogCategories>
+    </div>
 </template>
 
 <script>
-import LogCategories from './components/LogCategories.vue'
+    import LogCategories from './components/LogCategories.vue'
 
-export default {
-  name: 'Panel',
-  components: {
-      LogCategories
-  }
-}
+    export default {
+        name: 'Panel',
+        components: {
+            LogCategories
+        }
+    }
 </script>
