@@ -14,12 +14,29 @@
             :filter="filter"
         >
             <template slot="category" scope="item">{{item.value}}</template>
-            <template slot="logLevel" scope="item">{{item.value}}</template>
+            <template slot="logLevel" scope="item">
+                <b-dropdown :text="item.value" :variant="logLevelToDropVariant(item.value)">
+                      <a class="dropdown-item" href="#">DEBUG</a>
+                      <a class="dropdown-item" href="#">LOG</a>
+                      <a class="dropdown-item" href="#">INFO</a>
+                      <a class="dropdown-item" href="#">WARN</a>
+                      <a class="dropdown-item" href="#">ERROR</a>
+                </b-dropdown>
+            </template>
         </b-table>
     </div>
 </template>
 
 <script>
+    const dropVariantMap = {
+        DEBUG: 'primary',
+        LOG: 'success',
+        INFO: 'info',
+        WARN: 'warning',
+        ERROR: 'danger',
+        '_': 'danger'
+    };
+
     export default {
         name: 'logCategories',
         data () {
@@ -41,6 +58,11 @@
             messaging.executeScriptOnInspectedPage("scripts/content-scripts/log-categories.js");
 
             return data;
+        },
+        methods: {
+            logLevelToDropVariant: function (logLevel) {
+                return dropVariantMap[logLevel];
+            }
         }
     }
 </script>
