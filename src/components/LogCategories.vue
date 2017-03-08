@@ -16,11 +16,11 @@
             <template slot="category" scope="item">{{item.value}}</template>
             <template slot="logLevel" scope="item">
                 <b-dropdown :text="item.value" :variant="logLevelToDropVariant(item.value)">
-                      <a class="dropdown-item" href="#">DEBUG</a>
-                      <a class="dropdown-item" href="#">LOG</a>
-                      <a class="dropdown-item" href="#">INFO</a>
-                      <a class="dropdown-item" href="#">WARN</a>
-                      <a class="dropdown-item" href="#">ERROR</a>
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'DEBUG')">DEBUG</a>
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'LOG')">LOG</a>
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'INFO')">INFO</a>
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'WARN')">WARN</a>
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'ERROR')">ERROR</a>
                 </b-dropdown>
             </template>
         </b-table>
@@ -62,6 +62,9 @@
         methods: {
             logLevelToDropVariant: function (logLevel) {
                 return dropVariantMap[logLevel];
+            },
+            setLogLevel: function(category, logLevel) {
+                console.log(`Set ${category} to ${logLevel}`);
             }
         }
     }
