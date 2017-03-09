@@ -49,6 +49,10 @@ exports.executeScriptOnInspectedPage = function (script, responseCallback) {
   exports.sendMessageToInspectedPage(message, responseCallback);
 };
 
+exports.injectScriptOnInspectedPage = function (script) {
+    chrome.devtools.inspectedWindow.eval(script, function(result, isException) {});
+};
+
 exports.sendMessageToPanel = function (eventId, message) {
   message._$eventId = eventId;
   chrome.extension.sendMessage(message);
