@@ -3,6 +3,11 @@
         <p class="lead">
             The following log categories are active on this page.
         </p>
+        <p>
+            See the
+            <a href="https://tfennelly.github.io/jenkins-js-logging/index.html">@jenkins-cd/logging documentation</a> for
+            details on hierarchical logging.
+        </p>
         <div class="justify-content-centermy-1 row">
             <b-form-fieldset horizontal class="col-6">
                 <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
