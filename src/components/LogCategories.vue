@@ -77,12 +77,20 @@
                 try {
                     this.setCategoryLogLevelFunc(category, logLevel);
                 } finally {
+                    let setPerformed = false;
                     this.logCategories = this.logCategories.map(function (cat) {
                         if (cat.category === category) {
                             cat.logLevel = logLevel;
+                            setPerformed = true;
                         }
                         return cat;
                     });
+                    if (!setPerformed) {
+                        this.logCategories.push({
+                            category: category,
+                            logLevel: logLevel
+                        });
+                    }
                 }
             }
         },
