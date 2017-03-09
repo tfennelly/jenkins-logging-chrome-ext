@@ -127,6 +127,9 @@
 </script>
 
 <style>
+    .logCategories {
+        padding: 20px;
+    }
     .logCategories td:first-child {
         width: 80%;
     }
