@@ -38,6 +38,13 @@
         ERROR: 'danger'
     };
 
+    function sort(categoryList) {
+        categoryList.sort(function (cat1, cat2) {
+            return cat1.category.localeCompare(cat2.category);
+        });
+        return categoryList;
+    }
+
     export default {
         name: 'logCategories',
         props: {
@@ -56,7 +63,7 @@
             };
 
             this.loadCategoriesFunc(function (logCategories) {
-                data.logCategories = logCategories.categories;
+                data.logCategories = sort(logCategories.categories);
                 data.numCategories = logCategories.count;
             });
 
@@ -90,13 +97,30 @@
                             category: category,
                             logLevel: logLevel
                         });
+                        sort(this.logCategories);
                     }
                 }
             }
         },
         computed: {
             expandedLogCategories: function() {
-                return this.logCategories;
+                const expandedSet = [];
+                const expandedCategoryList = [];
+                this.logCategories.forEach(function (cat) {
+                    let catTokens = cat.category.split('\.');
+                    while (catTokens.length > 1) {
+                        const subCat = catTokens.join('.');
+                        if (expandedCategoryList.indexOf(subCat) === -1) {
+                            expandedCategoryList.push(subCat);
+                            expandedSet.push({
+                                category: subCat,
+                                logLevel: cat.logLevel
+                            });
+                        }
+                        catTokens.pop();
+                    }
+                });
+                return sort(expandedSet);
             }
         }
     }
