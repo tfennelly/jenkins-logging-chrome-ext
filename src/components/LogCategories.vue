@@ -9,7 +9,7 @@
             </b-form-fieldset>
         </div>
         <b-table
-            :items="logCategories"
+            :items="expandedLogCategories"
             :fields="fields"
             :filter="filter"
         >
@@ -40,7 +40,8 @@
     export default {
         name: 'logCategories',
         props: {
-            loadCategoriesFunc: Function
+            loadCategoriesFunc: Function,
+            setCategoryLogLevelFunc: Function
         },
         data () {
             const data = {
@@ -65,7 +66,12 @@
                 return dropVariantMap[logLevel];
             },
             setLogLevel: function(category, logLevel) {
-                console.log(`Set ${category} to ${logLevel}`);
+                this.setCategoryLogLevelFunc(category, logLevel);
+            }
+        },
+        computed: {
+            expandedLogCategories: function() {
+                return this.logCategories;
             }
         }
     }

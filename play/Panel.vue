@@ -1,7 +1,7 @@
 <template>
     <Page>
         <div id="Panel">
-            <LogCategories :loadCategoriesFunc="loadCategoriesFunc"></LogCategories>
+            <LogCategories :loadCategoriesFunc="loadCategoriesFunc" :setCategoryLogLevelFunc="setCategoryLogLevelFunc"></LogCategories>
         </div>
     </Page>
 </template>
@@ -98,6 +98,9 @@
                     ],
                     "_$eventId": "log.categories"
                 });
+            },
+            setCategoryLogLevelFunc: function(category, logLevel) {
+                console.log(`*** Set ${category} to ${logLevel}`);
             }
         }
     }
