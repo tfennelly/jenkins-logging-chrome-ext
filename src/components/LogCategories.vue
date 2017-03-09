@@ -64,7 +64,7 @@
         },
         methods: {
             logLevelToDisplayText: function (logLevel) {
-                if (validLogLevels[logLevel]) {
+                if (validLogLevels.indexOf(logLevel) !== -1) {
                     return logLevel;
                 } else {
                     return '(unset)';
@@ -74,7 +74,16 @@
                 return (dropVariantMap[logLevel] || '');
             },
             setLogLevel: function(category, logLevel) {
-                this.setCategoryLogLevelFunc(category, logLevel);
+                try {
+                    this.setCategoryLogLevelFunc(category, logLevel);
+                } finally {
+                    this.logCategories = this.logCategories.map(function (cat) {
+                        if (cat.category === category) {
+                            cat.logLevel = logLevel;
+                        }
+                        return cat;
+                    });
+                }
             }
         },
         computed: {
@@ -94,5 +103,6 @@
         font-size: 12px;
         line-height: 1.5;
         border-radius: 3px;
+        min-width: 70px;
     }
 </style>
