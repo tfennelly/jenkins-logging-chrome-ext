@@ -114,7 +114,7 @@
                             expandedCategoryList.push(subCat);
                             expandedSet.push({
                                 category: subCat,
-                                logLevel: cat.logLevel
+                                logLevel: (subCat === cat.category ? cat.logLevel : '_')
                             });
                         }
                         catTokens.pop();
