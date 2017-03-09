@@ -5,7 +5,7 @@
         </p>
         <p>
             See the
-            <a href="https://tfennelly.github.io/jenkins-js-logging/index.html">@jenkins-cd/logging documentation</a> for
+            <a target="_blank" href="https://tfennelly.github.io/jenkins-js-logging/index.html">@jenkins-cd/logging documentation</a> for
             details on hierarchical logging.
         </p>
         <div class="justify-content-centermy-1 row">
