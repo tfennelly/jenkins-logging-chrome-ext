@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="logCategories">
         <p class="lead">
             The following log categories are active on this page.
         </p>
@@ -70,3 +70,9 @@
         }
     }
 </script>
+
+<style>
+    .logCategories td:first-child {
+        width: 80%;
+    }
+</style>
