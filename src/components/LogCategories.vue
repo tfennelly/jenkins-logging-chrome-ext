@@ -15,7 +15,8 @@
         >
             <template slot="category" scope="item">{{item.value}}</template>
             <template slot="logLevel" scope="item">
-                <b-dropdown :text="item.value" :variant="logLevelToDropVariant(item.value)">
+                <b-dropdown :text="logLevelToDisplayText(item.value)" :variant="logLevelToDropVariant(item.value)">
+                      <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, '_')">{{logLevelToDisplayText('_')}}</a>
                       <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'DEBUG')">DEBUG</a>
                       <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'LOG')">LOG</a>
                       <a class="dropdown-item" href="#" @click="setLogLevel(item.item.category, 'INFO')">INFO</a>
@@ -28,13 +29,13 @@
 </template>
 
 <script>
+    const validLogLevels = ['DEBUG', 'LOG', 'INFO', 'WARN', 'ERROR'];
     const dropVariantMap = {
         DEBUG: 'primary',
         LOG: 'success',
         INFO: 'info',
         WARN: 'warning',
-        ERROR: 'danger',
-        '_': 'danger'
+        ERROR: 'danger'
     };
 
     export default {
@@ -62,8 +63,15 @@
             return data;
         },
         methods: {
+            logLevelToDisplayText: function (logLevel) {
+                if (validLogLevels[logLevel]) {
+                    return logLevel;
+                } else {
+                    return '(unset)';
+                }
+            },
             logLevelToDropVariant: function (logLevel) {
-                return dropVariantMap[logLevel];
+                return (dropVariantMap[logLevel] || '');
             },
             setLogLevel: function(category, logLevel) {
                 this.setCategoryLogLevelFunc(category, logLevel);
