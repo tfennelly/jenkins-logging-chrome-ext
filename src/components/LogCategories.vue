@@ -39,8 +39,10 @@
 
     export default {
         name: 'logCategories',
+        props: {
+            loadCategoriesFunc: Function
+        },
         data () {
-            const messaging = require('../messaging');
             const data = {
                 fields: {
                     category: {label: 'Category', sortable: true},
@@ -51,11 +53,10 @@
                 filter: null
             };
 
-            messaging.onMessageFromInspectedPage("log.categories", function (logCategories) {
+            this.loadCategoriesFunc(function (logCategories) {
                 data.logCategories = logCategories.categories;
                 data.numCategories = logCategories.count;
             });
-            messaging.executeScriptOnInspectedPage("scripts/content-scripts/log-categories.js");
 
             return data;
         },
